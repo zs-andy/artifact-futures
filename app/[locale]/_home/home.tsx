@@ -30,7 +30,7 @@ function Wheel({ digits }: { digits: number[] }) {
   );
 }
 
-export function Home() {
+export function Home({ exhibit = false }: { exhibit?: boolean }) {
   const root = useRef<HTMLElement>(null);
   const images = useRef<Images | null>(null);
   const [ready, setReady] = useState(false);
@@ -78,13 +78,21 @@ export function Home() {
           stopRenderer?.();
           return;
         }
+        if (exhibit && !stopRenderer) {
+          const { exhibitFallback } = await import("./exhibit-fallback");
+          if (abort.signal.aborted) return;
+          stopRenderer = exhibitFallback(home, state, images.current!);
+        }
         // Async GPU setup finishes outside matchMedia's synchronous GSAP scope.
         context.add(() => {
-          const useDesktop = wide && motion && !!stopRenderer;
+          const useDesktop = exhibit || (wide && motion && !!stopRenderer);
           home.dataset.mode = useDesktop ? "desktop" : "folio";
-          stopScene = motion ? (useDesktop ? desktop(home, state) : mobile(home)) : undefined;
-          stopFooter = useDesktop ? footer(home, state) : undefined;
+          stopScene = exhibit
+            ? desktop(home, state, true)
+            : motion ? (useDesktop ? desktop(home, state) : mobile(home)) : undefined;
+          stopFooter = useDesktop && !exhibit ? footer(home, state) : undefined;
           ScrollTrigger.refresh();
+          if (exhibit) window.parent.postMessage({ type: "artifact:stage-ready" }, location.origin);
         });
       };
       void start();
@@ -97,10 +105,10 @@ export function Home() {
       };
     });
     return () => media.revert();
-  }, [ready, gpuLost]);
+  }, [ready, gpuLost, exhibit]);
 
   return (
-    <main ref={root} className="home flex-1" style={seedStyle}>
+    <main ref={root} className="home flex-1" data-exhibit={exhibit || undefined} style={seedStyle}>
       <section className="home__scene" aria-label="ARTIFACT Futures">
         <div className="home__scene-stage">
           <div

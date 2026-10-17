@@ -60,7 +60,7 @@ const seedAt = (x: number, y: number): Frame => ({
   r: SEED_RADIUS,
 });
 
-export function desktop(root: HTMLElement, state: Scene) {
+export function desktop(root: HTMLElement, state: Scene, exhibit = false) {
   const reel = root.querySelector<HTMLElement>(".home__scene")!;
   const layers = root.querySelector<HTMLElement>(".home__scene-layers")!;
   const loader = root.querySelector<HTMLElement>(".home__loader")!;
@@ -75,12 +75,14 @@ export function desktop(root: HTMLElement, state: Scene) {
   const copies = [...layers.querySelectorAll<HTMLElement>("[data-copy]")];
   let bounds = copies.map((copy) => copy.getBoundingClientRect());
   const journalRun = copies[0].querySelector<HTMLElement>("[data-scroll]");
+  const staySide = layers.querySelector<HTMLElement>(".home__stay-side");
   const ledgerRun = copies[2]?.querySelector<HTMLElement>("[data-ledger]") ?? null;
   const strip = copies[2]?.querySelector<HTMLElement>("[data-slot-strip]") ?? null;
   if (!mark || !tagline || !ledgerRun || copies.length !== 3) return;
 
   reel.dataset.live = "";
   html.dataset.reel = "";
+  if (exhibit) bounds = copies.map((copy) => copy.getBoundingClientRect());
 
   const width = () => window.innerWidth;
   const height = () => window.innerHeight;
@@ -95,6 +97,17 @@ export function desktop(root: HTMLElement, state: Scene) {
   const left = (): Frame => ({ x: 0, y: 0, w: width() / 2, h: height(), r: 0 });
   const full = (): Frame => ({ x: 0, y: 0, w: width(), h: height(), r: 0 });
   const box = (): Frame => {
+    if (exhibit && staySide) {
+      // The first two grid columns form a dedicated artwork area beside the copy.
+      const column = staySide.getBoundingClientRect().left - layers.getBoundingClientRect().left;
+      const w = Math.max(0, Math.min(
+        BOX_MAX,
+        column - BOX_INSET * 2,
+        ((height() - BOX_INSET * 2) * 1067) / 1600,
+      ));
+      const h = (w * 1600) / 1067;
+      return { x: (column - w) / 2, y: (height() - h) / 2, w, h, r: SEED_RADIUS };
+    }
     const w = Math.min(BOX_MAX, width() * BOX_SHARE);
     const h = (w * 1600) / 1067;
     return { x: BOX_INSET, y: height() - BOX_INSET - h, w, h, r: SEED_RADIUS };
@@ -172,7 +185,13 @@ export function desktop(root: HTMLElement, state: Scene) {
   const occasions = bill ? [...bill.querySelectorAll<HTMLElement>("[data-occasion]")] : [];
   const peek = { on: -1, open: 0, dither: 1, x: 0, y: 0, px: 0, py: 0, fx: 0, fy: 0 };
   const peekSize = () => {
-    const w = Math.min(PEEK_MAX, width() * PEEK_SHARE);
+    const w = exhibit
+      ? Math.max(0, Math.min(
+          PEEK_MAX,
+          width() / 6 - BOX_INSET * 2,
+          (height() - BOX_INSET * 2) / PEEK_RATIO,
+        ))
+      : Math.min(PEEK_MAX, width() * PEEK_SHARE);
     return { w, h: w * PEEK_RATIO };
   };
   const peekSide = () => {
@@ -253,6 +272,19 @@ export function desktop(root: HTMLElement, state: Scene) {
   };
   const peekTick = () => {
     if (peek.on < 0 && peek.open <= 0) return;
+    if (exhibit) {
+      // Grow and close inside the reserved left column, clear of the scrolling dates.
+      const { w, h } = peekSize();
+      const seed = SEED_HALF * 2;
+      frame.w = seed + (w - seed) * peek.open;
+      frame.h = seed + (h - seed) * peek.open;
+      frame.x = (width() / 6 - frame.w) / 2;
+      frame.y = (height() - frame.h) / 2;
+      frame.r = SEED_RADIUS;
+      state.dither = peek.dither;
+      clip();
+      return;
+    }
     const follow = 1 - (1 - PEEK_LAG) ** gsap.ticker.deltaRatio(PEEK_FPS);
     const side = peekSide();
     const { w, h } = peekSize();
@@ -277,7 +309,8 @@ export function desktop(root: HTMLElement, state: Scene) {
       peekClose(true, now < LEDGER_FROM);
     state.rest = now >= end - REST_LEAD;
     reel.toggleAttribute("data-moved", now > HINT_UNTIL);
-    if (now >= LEDGER_FROM && now < ledgerTo) slot.resume();
+    if (exhibit) slot.totalTime(Math.max(0, now - LEDGER_FROM) * 5).pause();
+    else if (now >= LEDGER_FROM && now < ledgerTo) slot.resume();
     else slot.pause();
     const active = WINDOWS.map(([from, to]) => now >= from && now < to);
     const moving = (now > 0 && now < TAGLINE_MOVES) || (now >= charsFrom && now < end);
@@ -450,7 +483,7 @@ export function desktop(root: HTMLElement, state: Scene) {
       charsFrom,
     );
 
-  reel.style.height = `${Math.round((timeline.duration() + 1) * height())}px`;
+  reel.style.height = exhibit ? `${height()}px` : `${Math.round((timeline.duration() + 1) * height())}px`;
 
   occasions.forEach((occasion) => {
     occasion.addEventListener("pointerenter", peekEnter);
@@ -459,7 +492,7 @@ export function desktop(root: HTMLElement, state: Scene) {
   bill?.addEventListener("pointermove", peekMove);
   gsap.ticker.add(peekTick);
 
-  const trigger = ScrollTrigger.create({
+  const trigger = exhibit ? null : ScrollTrigger.create({
     trigger: reel,
     start: "top top",
     end: "bottom bottom",
@@ -473,8 +506,36 @@ export function desktop(root: HTMLElement, state: Scene) {
   });
   ScrollTrigger.refresh();
 
+  // The exhibition drives this same timeline; the ordinary homepage remains scroll-driven.
+  let previous = 0;
+  const playback = (event: MessageEvent) => {
+    if (event.source !== window.parent || event.origin !== location.origin) return;
+    const data = event.data;
+    if (data?.type !== "artifact:playback" || !Number.isFinite(data.progress)) return;
+    const progress = Math.min(1, Math.max(0, data.progress));
+    if (progress < previous) shelf.forEach((book) => {
+      book.open = false;
+      book.rig.reset();
+    });
+    previous = progress;
+    timeline?.progress(progress);
+    clip();
+    if (timeline && timeline.time() >= LEDGER_FROM && timeline.time() < ledgerTo) {
+      const visible = occasions.map((element) => ({ element, rect: element.getBoundingClientRect() }))
+        .filter(({ rect }) => rect.top > 0 && rect.bottom < height())
+        .sort((a, b) => Math.abs(a.rect.top - height() * 0.45) - Math.abs(b.rect.top - height() * 0.45))[0];
+      if (visible && Number(visible.element.dataset.occasion) !== peek.on) {
+        visible.element.dispatchEvent(new PointerEvent("pointerenter", {
+          pointerType: "mouse", clientX: 32, clientY: height() * 0.2,
+        }));
+      } else if (!visible && peek.on >= 0) peekClose(false);
+    }
+  };
+  if (exhibit) window.addEventListener("message", playback);
+
   return () => {
-    trigger.kill();
+    window.removeEventListener("message", playback);
+    trigger?.kill();
     slot.kill();
     gsap.ticker.remove(peekTick);
     gsap.killTweensOf(peek);
