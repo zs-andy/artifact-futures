@@ -1,0 +1,164 @@
+.residency-community.residency-chapter--community {
+  --community-line: rgb(0 0 0 / 15%);
+  position: relative;
+  z-index: 3;
+  color: #111;
+  background: #eeeeee;
+  padding: clamp(5rem, 9vw, 10rem) var(--hero-inset);
+}
+
+.residency-community .community-headline {
+  margin: clamp(4rem, 7vw, 8rem) 0 clamp(3rem, 6vw, 7rem);
+  font-size: clamp(4.75rem, 9.4vw, 11.75rem);
+  font-weight: 500;
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+}
+
+.residency-community .community-headline span {
+  display: block;
+}
+
+.residency-community .community-headline span + span {
+  margin-top: 0.08em;
+  text-align: right;
+}
+
+.residency-community .community-introduction {
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  gap: 8vw;
+  align-items: start;
+  margin: 0 0 clamp(4.5rem, 9vw, 10rem);
+}
+
+.residency-community .community-caption {
+  padding-top: 0.45rem;
+  font-family: var(--font-fallback);
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+.residency-community .community-lead {
+  max-width: none;
+  margin: 0;
+  font-size: clamp(1.65rem, 2.5vw, 2.7rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+}
+
+.residency-community .community-times {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.residency-community .community-city {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  align-items: baseline;
+  gap: 1rem;
+  padding: clamp(1.65rem, 3.2vw, 3.5rem) 0;
+}
+
+.residency-community .community-city + .community-city {
+  border-top: 1px solid var(--community-line);
+}
+
+.residency-community .community-city__name {
+  font-size: clamp(2.5rem, 4.2vw, 5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.residency-community .community-city__local {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.residency-community .community-city__time {
+  font-size: clamp(2.6rem, 4.6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+}
+
+.residency-community .community-city__zone {
+  min-width: 4rem;
+  font-family: var(--font-fallback);
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.residency-community .community-afterword {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  width: auto;
+  margin: clamp(4rem, 8vw, 9rem) 0 0;
+  font-size: clamp(1.2rem, 1.7vw, 1.65rem);
+  line-height: 1.35;
+}
+
+.residency-community .community-afterword p + p {
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .residency-community .community-headline {
+    font-size: clamp(3.4rem, 10vw, 5rem);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+  }
+
+  .residency-community .community-headline span + span {
+    margin-top: 0;
+    text-align: left;
+  }
+
+  .residency-community .community-introduction {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .residency-community .community-lead {
+    font-size: 1.55rem;
+  }
+
+  .residency-community .community-city {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    padding: 1.7rem 0 2rem;
+  }
+
+  .residency-community .community-city__name {
+    font-size: clamp(2.85rem, 11vw, 5rem);
+  }
+
+  .residency-community .community-city__local {
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  .residency-community .community-city__time {
+    font-size: clamp(2.75rem, 10.5vw, 4.5rem);
+  }
+
+  .residency-community .community-afterword {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    font-size: 1.25rem;
+  }
+}

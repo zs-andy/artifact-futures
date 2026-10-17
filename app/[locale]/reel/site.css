@@ -1,0 +1,113 @@
+.af {
+  --af-blue: #1546b0;
+  --af-orange: #f8941f;
+  --af-pad: clamp(16px, 1.6vw, 28px);
+  --af-logo-big: clamp(260px, 40vw, 760px);
+  --af-logo-small: 132px;
+  position: relative;
+  flex: 1 0 auto;
+  min-height: 100svh;
+  background: #ffffff;
+  color: #000000;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.af-loader {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.af-grid {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  pointer-events: none;
+}
+.af-grid__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgb(0 0 0 / 0.12);
+}
+.af-grid__line:nth-child(1) {
+  left: 25%;
+}
+.af-grid__line:nth-child(2) {
+  left: 50%;
+}
+.af-grid__line:nth-child(3) {
+  left: 75%;
+}
+.rl[data-ink-mark="white"] .af-grid__line {
+  background: rgb(255 255 255 / 0.24);
+}
+.af-loader__mark {
+  position: fixed;
+  z-index: 20;
+  top: var(--af-pad);
+  left: var(--af-pad);
+  width: var(--af-logo-big);
+  overflow: hidden;
+  color: var(--af-blue);
+}
+.af-loader[data-state="done"] .af-loader__mark {
+  width: var(--af-logo-small);
+}
+.rl[data-ink-mark="white"] .af-loader__mark {
+  color: #ffffff;
+}
+.af-loader__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: currentColor;
+}
+.af-loader__meter {
+  position: fixed;
+  z-index: 20;
+  bottom: var(--af-pad);
+  left: var(--af-pad);
+  margin: 0;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+.af-loader__count {
+  display: block;
+}
+.af-loader[data-state="done"] .af-loader__meter {
+  visibility: hidden;
+}
+
+.af-cursor {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  box-sizing: border-box;
+  border: 2px solid var(--af-cursor-ink, #000000);
+  border-radius: 2px;
+  background: var(--af-cursor-ink, #000000);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+}
+.af-cursor[data-on="true"] {
+  opacity: 1;
+}
+.af-cursor[data-ink="white"] {
+  --af-cursor-ink: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .af {
+    --af-logo-big: 78vw;
+    --af-logo-small: 112px;
+  }
+}

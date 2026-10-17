@@ -1,0 +1,13 @@
+node_modules
+.open-next
+.wrangler
+.next
+dist
+out
+coverage
+bun.lock
+resource/notes
+.claude
+.codex
+components/icons/icon-data.ts
+*.md

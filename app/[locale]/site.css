@@ -1,0 +1,392 @@
+@import "tailwindcss";
+@import "../../lib/theme/tokens.css";
+
+:root {
+  --hero-inset: 6.3vw;
+  --hero-bar-space: 7svh;
+  --hero-nav-size: max(11px, 0.78vw);
+  --hero-wordmark-size: max(14px, 0.95vw);
+  --hero-tracking: 0.3em;
+  --hero-title-size: max(30px, 7vw);
+  --hero-title-word-spacing: 0.12em;
+  --hero-title-tracking: -0.02em;
+  --hero-title-width: calc(100% - 2 * var(--hero-inset));
+  --hero-menu-size: 1.5rem;
+  --residency-label-size: max(32px, 3.15vw);
+  --residency-statement-size: max(22px, 1.7vw);
+  --residency-peek: 18svh;
+  --residency-frame-height: 85svh;
+  --residency-paper: #f8f8f8;
+  --residency-hold: 345svh;
+  --residency-rest-top: clamp(8.5rem, 24svh, 13.5rem);
+}
+
+@layer base {
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  img {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+
+  html,
+  body {
+    background-color: var(--app-background);
+  }
+
+  html[data-residency="intro"],
+  html[data-residency="lift"],
+  html[data-residency="intro"] body,
+  html[data-residency="lift"] body {
+    overflow: hidden;
+    height: 100svh;
+  }
+
+  html:not([data-boot="ready"]) body {
+    opacity: 0;
+  }
+
+  html[data-boot="ready"] body {
+    opacity: 1;
+  }
+
+  @media (scripting: none) {
+    html body {
+      opacity: 1;
+    }
+  }
+}
+
+@layer components {
+  .residency {
+    background-color: var(--app-background);
+  }
+
+  html[data-residency="intro"] .residency,
+  html[data-residency="lift"] .residency {
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  html[data-residency="intro"] .residency-story {
+    visibility: hidden;
+  }
+
+  .residency-hero {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    height: 100svh;
+    min-height: 0;
+    flex-shrink: 0;
+    flex-direction: column;
+    padding-block-start: var(--hero-bar-height, 7svh);
+    overflow: hidden;
+    background-color: var(--page-background);
+  }
+
+  .hero__bar {
+    position: fixed;
+    z-index: 30;
+    inset-block-start: 0;
+    inset-inline: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block-start: var(--hero-bar-space);
+    padding-block-end: 0.75rem;
+    user-select: none;
+  }
+
+  .hero__wordmark {
+    position: absolute;
+    inset-inline-start: var(--hero-inset);
+    font-size: var(--hero-wordmark-size);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+  }
+
+  .hero__nav {
+    display: flex;
+    gap: 2.4vw;
+  }
+
+  .hero__toggle {
+    display: none;
+  }
+
+  .hero__link {
+    font-size: var(--hero-nav-size);
+    font-weight: 700;
+    letter-spacing: var(--hero-tracking);
+    text-transform: uppercase;
+  }
+
+  .hero__stage {
+    position: relative;
+    isolation: isolate;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .hero__title {
+    position: relative;
+    display: grid;
+    width: var(--hero-title-width);
+    height: 100%;
+    align-content: center;
+    margin-inline: auto;
+    font-size: var(--hero-title-size);
+    font-weight: 400;
+    letter-spacing: var(--hero-title-tracking);
+    word-spacing: var(--hero-title-word-spacing);
+    line-height: 0.96;
+    text-align: center;
+    text-transform: uppercase;
+    user-select: none;
+  }
+
+  .hero__title-mask {
+    display: block;
+    overflow: hidden;
+  }
+
+  .hero__title-line {
+    display: block;
+  }
+
+  .residency-story {
+    position: relative;
+    z-index: 1;
+    height: calc(var(--residency-frame-height) + var(--residency-hold));
+    background-color: var(--residency-paper);
+  }
+
+  .residency-story__frame {
+    position: sticky;
+    top: 0;
+    height: var(--residency-frame-height);
+    overflow: hidden;
+    background-color: var(--app-background);
+    color: var(--font-foreground);
+  }
+
+  .residency-story__rail {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: clamp(1.25rem, 2.8vw, 2.2rem);
+    padding-block-start: var(--residency-rest-top);
+    padding-inline: var(--hero-inset);
+  }
+
+  .residency-story__body-window {
+    position: relative;
+    width: calc(100vw - 2 * var(--hero-inset));
+    min-height: min(42svh, 32rem);
+  }
+
+  .residency-story__track {
+    position: relative;
+    width: 100%;
+    height: min(42svh, 32rem);
+  }
+
+  .residency-story__body-panel,
+  .residency-story__content-panel {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: min(60vw, 68rem);
+    will-change: transform;
+  }
+
+  .residency-story__stacked-panel {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.25rem, 2.4vw, 2rem);
+  }
+
+  .residency-story__side-panel {
+    display: flex;
+    width: min(72vw, 82rem);
+    align-items: flex-start;
+    gap: clamp(1.5rem, 3vw, 3.5rem);
+  }
+
+  .residency-story__side-panel .residency-story__text {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .residency-story__visual {
+    position: relative;
+    flex: 0 0 auto;
+    width: min(24vw, 28rem);
+    height: min(42svh, 32rem);
+    margin: 0;
+    overflow: hidden;
+    background-color: var(--font-foreground);
+    will-change: transform;
+  }
+
+  .residency-story__stacked-visual {
+    position: relative;
+    width: min(38vw, 42rem);
+    height: min(24svh, 18rem);
+    margin: 0;
+    overflow: hidden;
+    background-color: var(--font-foreground);
+  }
+
+  .residency-story__visual img,
+  .residency-story__stacked-visual img {
+    object-fit: cover;
+  }
+
+  .residency-story__title {
+    font-size: var(--residency-label-size);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+  }
+
+  .residency-story__text {
+    width: 100%;
+    font-size: var(--residency-statement-size);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  .residency-story__statement {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+    opacity: 0;
+  }
+
+  .residency-story__statement-heading {
+    font-weight: 700;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hero-rise {
+    from {
+      transform: translateY(110%);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  html:not([data-boot="ready"]) .hero__title-line {
+    transform: translateY(110%);
+  }
+
+  html[data-boot="ready"] .hero__title-line {
+    animation: hero-rise 1.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  html[data-boot="ready"] .hero__title-mask:nth-child(1) .hero__title-line {
+    animation-delay: 0.18s;
+  }
+
+  html[data-boot="ready"] .hero__title-mask:nth-child(2) .hero__title-line {
+    animation-delay: 0.28s;
+  }
+
+  html[data-boot="ready"] .hero__title-mask:nth-child(3) .hero__title-line {
+    animation-delay: 0.38s;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero__toggle {
+    position: absolute;
+    display: block;
+    inset-inline-end: var(--hero-inset);
+    font-size: var(--hero-nav-size);
+    font-weight: 700;
+    letter-spacing: var(--hero-tracking);
+    text-transform: uppercase;
+  }
+
+  .hero__nav {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.2em;
+    padding-inline: var(--hero-inset);
+    background-color: var(--page-background);
+  }
+
+  .hero__nav[data-open="false"] {
+    display: none;
+  }
+
+  .hero__link {
+    font-size: var(--hero-menu-size);
+  }
+
+  .residency-story {
+    height: auto;
+  }
+
+  .residency-story__frame {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+
+  .residency-story__rail {
+    gap: clamp(1.5rem, 6vw, 2.5rem);
+    padding-block: clamp(3rem, 12vw, 5rem) clamp(4rem, 14vw, 6rem);
+  }
+
+  .residency-story__body-window {
+    width: 100%;
+    min-height: 0;
+  }
+
+  .residency-story__track {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    gap: clamp(2.5rem, 9vw, 4rem);
+  }
+
+  .residency-story__body-panel,
+  .residency-story__content-panel {
+    position: static;
+    width: 100%;
+  }
+
+  .residency-story__side-panel {
+    width: 100%;
+    flex-direction: column;
+    gap: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .residency-story__visual,
+  .residency-story__stacked-visual {
+    width: 100%;
+    height: min(52svh, 24rem);
+  }
+
+  .residency-story__statement {
+    opacity: 1;
+  }
+}

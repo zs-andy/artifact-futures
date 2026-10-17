@@ -1,0 +1,88 @@
+.node-book {
+  --book-t: max(2px, calc(var(--book-w) * 0.035));
+  --book-z: calc(var(--book-t) / 2);
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--line-y) + var(--line-u) / 2);
+  left: calc(var(--hero-inset) + var(--node, 0) * var(--pitch));
+  width: var(--book-w);
+  height: var(--book-h);
+  perspective: calc(var(--book-w) * 4.45);
+  perspective-origin: 0 50%;
+  pointer-events: none;
+  visibility: hidden;
+}
+.node-book__body {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(90deg) scaleY(0);
+  transform-origin: 0 calc(var(--line-u) / -2);
+  transform-style: preserve-3d;
+}
+.node-book__spine {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  display: flex;
+  width: var(--book-t);
+  height: 100%;
+  padding: calc(var(--book-t) * 1.5) 0;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  background: var(--book-board);
+  color: var(--book-ink);
+  writing-mode: vertical-rl;
+  transform: translateZ(var(--book-z)) rotateY(-90deg);
+  transform-origin: 100% 50%;
+}
+.node-book__spine-text {
+  font-size: calc(var(--book-t) * 0.78);
+  font-weight: 500;
+  line-height: var(--book-t);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.node-book__veil {
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  opacity: 0;
+  pointer-events: none;
+}
+.node-book__veil--white {
+  background: #ffffff;
+  opacity: 1;
+}
+.node-book__cover {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--book-board);
+  transform: translateZ(var(--book-z));
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.node-book__art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--book-ink);
+  font-family:
+    "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC",
+    "Microsoft YaHei", sans-serif;
+}
+.node-book__mast {
+  font-size: 211px;
+  font-weight: 700;
+}
+.node-book__block {
+  text-anchor: middle;
+}
+.node-book__em {
+  font-style: italic;
+  font-weight: 400;
+}

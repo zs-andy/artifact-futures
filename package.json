@@ -1,0 +1,65 @@
+{
+  "name": "artifact-futures",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "check": "tsc --noEmit && eslint",
+    "icons:generate": "bun scripts/generate-icons.mjs",
+    "issue:build": "bun resource/scripts/build-issue-images.mjs",
+    "issue:upload": "bun resource/scripts/upload-issue-images.mjs",
+    "westbund:prepare": "bun scripts/westbund-images.mjs prepare",
+    "westbund:upload": "bun scripts/westbund-images.mjs upload",
+    "westbund:apply": "bun scripts/westbund-images.mjs apply",
+    "r2:upload": "bun scripts/r2-assets.mjs upload",
+    "r2:verify": "bun scripts/r2-assets.mjs verify",
+    "assets:upload": "bun resource/scripts/upload-image-assets.mjs",
+    "images:webp": "bun resource/scripts/convert-to-webp.mjs"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.26",
+    "next": "16.3.8",
+    "next-intl": "^4.14.9",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "three": "^0.185.1",
+    "vgpu": "^0.5.0"
+  },
+  "devDependencies": {
+    "@central-icons-react/all": "^1.2.2",
+    "@opennextjs/cloudflare": "^1.20.8",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^20.19.43",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.185.4",
+    "@vercel/blob": "^2.8.0",
+    "@webgpu/types": "^0.1.74",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.3.8",
+    "prettier": "3.9.6",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.147.0"
+  },
+  "packageManager": "bun@1.3.11",
+  "ignoreScripts": [
+    "sharp",
+    "unrs-resolver"
+  ],
+  "trustedDependencies": [
+    "sharp",
+    "unrs-resolver"
+  ]
+}

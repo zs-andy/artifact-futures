@@ -1,0 +1,118 @@
+{
+  "nav": {
+    "wordmark": "ARTIFACT Futures",
+    "journal": "Journal",
+    "fellowship": "Fellowship",
+    "residency": "Residency",
+    "programme": "Programme",
+    "about": "About",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "residency": {
+    "title": "Residency",
+    "wordmark": "ARTIFACT Futures",
+    "slogan": ["We support", "ideas that matter", "beyond the moment."],
+    "sectionTitle": "Residency",
+    "statement": "Through residencies and fellowships, we cultivate artists, builders, curators, researchers, writers, and cultural practitioners whose work benefits from time, reflection, and interdisciplinary exchange. More than a place to produce work, Residency creates the conditions for people to develop their practice, articulate their ideas, and contribute to broader cultural conversations.",
+    "statementHeading": "A Space for Sustained Inquiry and Independent Practice",
+    "chapters": {
+      "design": {
+        "communityLine1": "Conversation",
+        "communityLine2": "without borders.",
+        "communityCaption1": "Different places.",
+        "communityCaption2": "A shared inquiry.",
+        "whyDisplay": "Beyond a single field.",
+        "roomLine1": "Room",
+        "roomLine2": "to think.",
+        "archiveLine1": "Record",
+        "archiveLine2": "as it forms.",
+        "researchNotes": "Research notes / Work in progress",
+        "visualPractice": "Visual practice",
+        "evolvingRecord": "An evolving record",
+        "beyondLine1": "Beyond",
+        "beyondLine2": "the stay."
+      },
+      "why": {
+        "title": "Why Residency",
+        "lead": "The questions shaping contemporary life increasingly exceed the boundaries of any single field.",
+        "context": "Artificial intelligence, cultural memory, ecology, technology, public life, and the future of institutions all demand perspectives that move across disciplines rather than remaining within them. Artists, builders, curators, researchers, writers, and institutional leaders often find themselves approaching the same questions from different directions.",
+        "conditions": "Residency creates the conditions for these conversations to happen.",
+        "exchangeCopy": "Rather than asking participants to leave behind their own expertise, we invite them to remain deeply rooted in their practice while engaging openly with others. We believe that interdisciplinary exchange is not an outcome of residency but one of its foundations. Some of the most meaningful developments begin as conversations between people who would not ordinarily find themselves in the same room.",
+        "practice": "Practice",
+        "exchange": "Exchange",
+        "inquiry": "Inquiry"
+      },
+      "experience": {
+        "title": "The Residency Experience",
+        "imageAlt": "A group of people gathered informally in a wood-paneled room.",
+        "practice": {
+          "title": "Independent practice",
+          "copy": "Rather than organizing the experience around milestones or predetermined outcomes, we create the conditions for meaningful work, whether through making, building, researching, reading, writing, conversation, or reflection."
+        },
+        "conversation": {
+          "title": "A wider conversation",
+          "copy": "Residents are encouraged to establish their own rhythm while becoming part of the wider ARTIFACT Futures community. Alongside independent practice, they encounter artists, researchers, builders, curators, museum professionals, educators, technologists, collectors, writers, and institutional leaders whose perspectives offer new ways of thinking."
+        },
+        "place": {
+          "title": "Place as research",
+          "copy": "The residency also extends beyond the studio or workspace. We encourage residents to explore the local environment, experience its rhythms, and remain open to unexpected encounters and observations that often reshape ideas in meaningful ways. Place itself becomes part of the research process."
+        },
+        "dialogue": {
+          "title": "Ongoing dialogue",
+          "copy": "Throughout the residency, regular conversations with the ARTIFACT Futures team create opportunities to reflect on larger questions surrounding each resident's work: the ideas they are pursuing, the assumptions embedded within their practice, and the responsibilities that accompany cultural production in a rapidly changing world."
+        },
+        "editorial": {
+          "title": "Editorial Contribution",
+          "copy": "Residents are invited to contribute through essays, conversations, research notes, visual projects, interviews, or reflections that extend their practice beyond its immediate form. Rather than documenting completed projects, these contributions articulate the questions, processes, and ideas that continue to evolve throughout the residency."
+        }
+      },
+      "documentation": {
+        "title": "Documentation",
+        "lead": "Residency is also a process of documentation.",
+        "process": "Throughout each residency, our editorial and media teams work closely with residents through interviews, photography, film, and editorial features, creating an evolving record of ideas, processes, and practices as they unfold.",
+        "archive": "Rather than focusing solely on finished outcomes, this documentation reflects how thinking develops through conversation, experimentation, and lived experience. It becomes part of the broader archive of ARTIFACT Futures."
+      },
+      "community": {
+        "title": "Community",
+        "lead": "Residency opens the door to an international community spanning artists, builders, researchers, curators, museum professionals, writers, educators, technologists, collectors, and institutional leaders.",
+        "relationships": "More than a professional network, it is a community connected by intellectual curiosity and a shared commitment to shaping the future through different forms of practice. The relationships that begin during residency often continue through future publications, exhibitions, research collaborations, public programmes, and institutional partnerships.",
+        "network": "Our networks extend across New York, Hanoi, Shanghai, Abu Dhabi, and beyond, built through long-term engagement with cultural, academic, and technological communities. The relationships formed here endure because they are grounded in sustained conversation and shared inquiry.",
+        "cities": {
+          "newYork": "New York",
+          "hanoi": "Hanoi",
+          "shanghai": "Shanghai",
+          "abuDhabi": "Abu Dhabi"
+        }
+      },
+      "beyond": {
+        "title": "Beyond Residency",
+        "lead": "Residency is not understood as a single moment in time, but as the beginning of an ongoing relationship.",
+        "continuation": "Many residents continue contributing to ARTIFACT Futures through the Journal, public programmes, exhibitions, research initiatives, and future collaborations. Ideas developed during residency often continue to evolve long after participants return home.",
+        "time": "We believe that meaningful cultural work unfolds over years rather than months. Residency offers time to think, space to experiment, and a community that continues well beyond the duration of the programme."
+      }
+    },
+    "followUp": [
+      "Ideas often emerge through time, reflection, conversation, observation, and sustained engagement with people, places, and questions. The ARTIFACT Futures Residency exists to support this slower rhythm of practice.",
+      "Rather than organizing our residencies around disciplines, we are guided by questions that require depth, experimentation, and sustained attention. Every resident arrives with a different practice, yet all share a commitment to curiosity, rigorous inquiry, and the belief that meaningful work develops over time."
+    ]
+  },
+  "journal": {
+    "title": "Journal",
+    "intro": "The Journal is a publication is an annual publication that brings together voices across art, technology, science and public life to examine questions that shape our shared future. The inaugural edition was presented at the 19th Venice Biennale of Architecture in collaboration with architect Trung Mai, as part of Intelligens. Natural. Artificial. Collective. curated by Carlo Ratti. The second issue was released during Westbund Art & Design 2025 in Shanghai, as part of its public program. The journal circulates globally through partner organisations, cultural spaces, and institutions, and is open-access, dedicated to creating a platform for exchange across regions and disciplines.",
+    "issues": {
+      "label": "Issues",
+      "number": "ISSUE #{number}",
+      "previous": "Previous issue",
+      "next": "Next issue"
+    }
+  },
+  "about": {
+    "title": "About",
+    "headline": ["A", "RESEARCH-DRIVEN", "CULTURAL", "INSTITUTION,", "ARTIFACT Futures."]
+  },
+  "notFound": {
+    "title": "Not found",
+    "backHome": "Back to home"
+  }
+}

@@ -1,0 +1,107 @@
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --app-background: #ffffff;
+  --page-background: #f8f8f8;
+  --brand: #1546b0;
+  --font-foreground: #000000;
+  --font-background: #ffffff;
+  --ring: #1546b0;
+  --curtain: #1546b0;
+  --divider: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #000000;
+    --app-background: #000000;
+    --page-background: #000000;
+    --font-foreground: #ffffff;
+    --font-background: #000000;
+    --ring: #f8941f;
+    --curtain: #1546b0;
+    --divider: #ffffff;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #000000;
+  --app-background: #000000;
+  --page-background: #000000;
+  --font-foreground: #ffffff;
+  --font-background: #000000;
+  --ring: #f8941f;
+  --curtain: #1546b0;
+  --divider: #ffffff;
+}
+
+:root {
+  --font-fallback: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+  --font-latin: var(--font-darker-grotesque), var(--font-fallback);
+  --font-latin-extended: var(--font-latin);
+  --font-arabic: "SF Arabic", "Geeza Pro", "Segoe UI", Tahoma,
+    var(--font-fallback);
+  --font-han: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    var(--font-fallback);
+  --font-ui: var(--font-latin);
+}
+
+:root:lang(vi) {
+  --font-ui: var(--font-latin-extended);
+}
+
+:root:lang(ar) {
+  --font-ui: var(--font-arabic);
+}
+
+:root:lang(zh) {
+  --font-ui: var(--font-han);
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-font-foreground: var(--font-foreground);
+  --color-font-background: var(--font-background);
+  --color-divider: var(--divider);
+  --color-app-background: var(--app-background);
+  --color-page-background: var(--page-background);
+  --font-sans: var(--font-ui);
+}
+
+@layer base {
+  html,
+  body {
+    background-color: var(--app-background);
+  }
+
+  body {
+    color: var(--font-foreground);
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: #f8941f;
+    color: #000000;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
