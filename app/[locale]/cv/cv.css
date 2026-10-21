@@ -1,6 +1,6 @@
 .cv {
-  --cv-blue: #1546b0;
-  --cv-orange: #f8941f;
+  --cv-blue: var(--brand);
+  --cv-orange: var(--accent-orange);
   --cv-g: clamp(14px, 1.6vw, 28px);
   --cv-pad: clamp(16px, 1.6vw, 28px);
   --cv-small: 13px;

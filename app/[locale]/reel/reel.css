@@ -6,9 +6,9 @@ html[data-reel="on"] body {
 }
 
 .rl {
-  --rl-blue: #1546b0;
-  --rl-orange: #f8941f;
-  --rl-pale: #f2f6fd;
+  --rl-blue: var(--brand);
+  --rl-orange: var(--accent-orange);
+  --rl-pale: var(--brand-soft);
   position: relative;
   flex: 1 0 auto;
   background: #ffffff;

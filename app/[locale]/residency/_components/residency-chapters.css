@@ -1,6 +1,6 @@
 .residency-chapters {
   --chapter-paper: var(--residency-paper, #f8f8f8);
-  --chapter-ink: #151614;
+  --chapter-ink: var(--ink);
   --chapter-rule: rgb(21 22 20 / 24%);
   position: relative;
   z-index: 2;
@@ -48,7 +48,7 @@
   top: 0;
   left: 0;
   font: inherit;
-  color: #858580;
+  color: var(--ink-muted);
 }
 .inquiry-statement p {
   font: inherit;
@@ -131,8 +131,8 @@
 .archive-desk { position: relative; height: 40vw; max-height: 37rem; }
 .archive-sheet { position: absolute; border: 8px solid white; border-bottom-width: 3rem; top: 2%; left: 8%; width: 76%; height: 82%; text-align: left; background: white; box-shadow: 0 4px 15px rgb(0 0 0 / 12%); transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms; transform-origin: 50% 80%; }
 .archive-sheet img { object-fit: cover; }
-.archive-sheet > span { position: absolute; bottom: -2.1rem; left: 0.5rem; font: 9px/1.2 var(--font-fallback); color: #151614; letter-spacing: 0.02em; }
-.archive-sheet--back { border: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem; transform: translate(-13%, 2%) rotate(-12deg); background: #e2e7f4; }
+.archive-sheet > span { position: absolute; bottom: -2.1rem; left: 0.5rem; font: 9px/1.2 var(--font-fallback); color: var(--ink); letter-spacing: 0.02em; }
+.archive-sheet--back { border: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem; transform: translate(-13%, 2%) rotate(-12deg); background: var(--brand-soft); }
 .archive-sheet--back > span { position: static; }
 .archive-sheet--back > span:first-child { font: 600 2.8vw/0.9 var(--font-ui); letter-spacing: -0.02em; }
 .archive-sheet--editorial { z-index: 2; transform: translate(-5%, 2%) rotate(-5deg); }
@@ -154,7 +154,7 @@
 .beyond-reading { display: grid; grid-template-columns: 1fr 1fr; gap: 12vw; }
 
 .hero__bar--residency { transition: color 200ms ease; }
-html[data-residency-chapter-theme="paper"] .hero__bar--residency { color: #151614; }
+html[data-residency-chapter-theme="paper"] .hero__bar--residency { color: var(--ink); }
 html[data-residency-chapter-theme="dark"] .hero__bar--residency { color: white; }
 .hero__bar--residency .hero__nav[data-open="true"] { color: var(--font-foreground); }
 

@@ -2,8 +2,8 @@
   --community-line: rgb(0 0 0 / 15%);
   position: relative;
   z-index: 3;
-  color: #111;
-  background: #eeeeee;
+  color: var(--ink);
+  background: var(--paper-muted);
   padding: clamp(5rem, 9vw, 10rem) var(--hero-inset);
 }
 

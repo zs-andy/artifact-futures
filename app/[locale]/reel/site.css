@@ -1,6 +1,6 @@
 .af {
-  --af-blue: #1546b0;
-  --af-orange: #f8941f;
+  --af-blue: var(--brand);
+  --af-orange: var(--accent-orange);
   --af-pad: clamp(16px, 1.6vw, 28px);
   --af-logo-big: clamp(260px, 40vw, 760px);
   --af-logo-small: 132px;

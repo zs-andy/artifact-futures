@@ -1,7 +1,7 @@
 .home {
   --home-size: 280px;
   --home-foot: 81px;
-  --home-orange: #f8941f;
+  --home-orange: var(--accent-orange);
   --home-sans: Arial, sans-serif;
   --home-logo: 72%;
   --home-stroke: 1px;

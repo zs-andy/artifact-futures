@@ -2,12 +2,19 @@
   color-scheme: light;
   --bg: #ffffff;
   --app-background: #ffffff;
-  --page-background: #f8f8f8;
+  --page-background: var(--paper-muted);
   --brand: #1546b0;
+  --brand-soft: color-mix(in srgb, var(--brand) 8%, white);
+  --accent-orange: #f8941f;
+  --ink: #111111;
+  --ink-muted: #666666;
+  --paper: #ffffff;
+  --paper-muted: #f8f8f8;
+  --rule: #d7d7d7;
   --font-foreground: #000000;
   --font-background: #ffffff;
-  --ring: #1546b0;
-  --curtain: #1546b0;
+  --ring: var(--brand);
+  --curtain: var(--brand);
   --divider: #000000;
 }
 
@@ -19,8 +26,8 @@
     --page-background: #000000;
     --font-foreground: #ffffff;
     --font-background: #000000;
-    --ring: #f8941f;
-    --curtain: #1546b0;
+    --ring: var(--accent-orange);
+    --curtain: var(--brand);
     --divider: #ffffff;
   }
 }
@@ -32,8 +39,8 @@
   --page-background: #000000;
   --font-foreground: #ffffff;
   --font-background: #000000;
-  --ring: #f8941f;
-  --curtain: #1546b0;
+  --ring: var(--accent-orange);
+  --curtain: var(--brand);
   --divider: #ffffff;
 }
 
@@ -85,7 +92,7 @@
   }
 
   ::selection {
-    background-color: #f8941f;
+    background-color: var(--accent-orange);
     color: #000000;
   }
 

@@ -16,7 +16,7 @@
   --residency-statement-size: max(22px, 1.7vw);
   --residency-peek: 18svh;
   --residency-frame-height: 85svh;
-  --residency-paper: #f8f8f8;
+  --residency-paper: var(--paper-muted);
   --residency-hold: 345svh;
   --residency-rest-top: clamp(8.5rem, 24svh, 13.5rem);
 }

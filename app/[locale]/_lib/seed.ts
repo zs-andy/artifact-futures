@@ -9,5 +9,5 @@ export const SEED = {
 export const seedStyle = {
   "--home-seed": `${SEED.size}px`,
   "--home-radius": `${SEED.radius}px`,
-  "--home-blue": SEED.color,
+  "--home-blue": "var(--brand)",
 } as CSSProperties;

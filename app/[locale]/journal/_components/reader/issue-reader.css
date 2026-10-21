@@ -1,9 +1,9 @@
 .ir {
   --ir-accent: #727343;
-  --ir-yellow: #f8941f;
-  --ir-paper: #fff;
-  --ir-ink: #111;
-  --ir-rule: #d7d7d7;
+  --ir-yellow: var(--accent-orange);
+  --ir-paper: var(--paper);
+  --ir-ink: var(--ink);
+  --ir-rule: var(--rule);
   position: fixed;
   inset: 0;
   z-index: 30;
@@ -114,7 +114,7 @@
 .ir-highlight {
   display: inline-block;
   background: var(--ir-yellow);
-  color: #111;
+  color: var(--ir-ink);
   padding: 3px 7px 5px;
   font-size: 13px;
   line-height: 1;
@@ -422,7 +422,7 @@
 .ir-figure-caption {
   font-size: 14px;
   line-height: 1.2;
-  color: #555;
+  color: var(--ink-muted);
 }
 .ir-article-end {
   border-top: 1px solid;
@@ -500,7 +500,7 @@
 .ir-contents-top button {
   align-self: stretch;
   padding: 0;
-  color: #666;
+  color: var(--ink-muted);
 }
 .ir-contents-top button:hover {
   color: var(--ir-accent);
@@ -534,7 +534,7 @@
 .ir-contents-list small {
   display: block;
   margin-top: 4px;
-  color: #666;
+  color: var(--ink-muted);
   font-size: 16px;
   line-height: 1.2;
 }
@@ -549,7 +549,7 @@
   padding: 65px 30px 50px;
   border: 0;
   background: #fff;
-  color: #111;
+  color: var(--ir-ink);
 }
 .ir-lightbox::backdrop {
   background: #111e;
@@ -837,7 +837,7 @@
   font-weight: 500;
 }
 .ir-gallery .ir-running-head {
-  color: #666;
+  color: var(--ink-muted);
 }
 .ir-plates {
   flex: 1;
@@ -859,7 +859,7 @@
   padding-top: 12px;
   font-size: 13px;
   line-height: 1.2;
-  color: #666;
+  color: var(--ink-muted);
 }
 .ir-plates figcaption span {
   color: var(--ir-accent);
@@ -905,7 +905,7 @@
   border: 0;
   padding: 0;
   margin-bottom: 44px;
-  color: #666;
+  color: var(--ink-muted);
 }
 .ir-paragraph,
 .ir-question,
@@ -1068,7 +1068,7 @@
   .ir-mobile-plates figcaption {
     font-size: 14px;
     line-height: 1.25;
-    color: #666;
+    color: var(--ink-muted);
   }
   .ir-footer button {
     padding-inline: 10px;

@@ -1,6 +1,7 @@
 import { JOURNAL, PROGRAMME } from "../_lib/home-content";
 import { BOOK_COVERS } from "../journal/_components/node-book.data";
 import { loadImage } from "../_lib/dither";
+import { SEED } from "../_lib/seed";
 
 export const DESKTOP = "(min-width: 1024px) and (hover: hover) and (pointer: fine)";
 export const MOTION = "(prefers-reduced-motion: no-preference)";
@@ -37,7 +38,11 @@ export const createScene = () => ({
   wash: 0,
   image: -1,
   pick: 0,
-  field: [0x15 / 255, 0x46 / 255, 0xb0 / 255] as [number, number, number],
+  field: [1, 3, 5].map((start) => parseInt(SEED.color.slice(start, start + 2), 16) / 255) as [
+    number,
+    number,
+    number,
+  ],
   frame: { x: 0, y: 0, w: 0, h: 0, r: 3 } as Frame,
 });
 export type Scene = ReturnType<typeof createScene>;
